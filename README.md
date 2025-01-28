@@ -1,5 +1,8 @@
 # AWS VPC Setup: Public and Private Subnets in Two Availability Zones
 
+![image](https://github.com/user-attachments/assets/44a2b3cb-bdf0-47c0-8931-470f97ee617b)
+
+
 This README provides step-by-step guidance to create an AWS VPC with the following architecture:
 
 - A single VPC.
