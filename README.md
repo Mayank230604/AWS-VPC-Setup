@@ -89,16 +89,12 @@ An AZ is a physical data center within an AWS Region. Using multiple AZs enhance
    - **AZ**: `us-east-1b`.
    - **CIDR Block**: `10.0.0.192/26`.
 
----
-
 ### Step 3: Set Up an Internet Gateway (IGW)
 
 1. In **Internet Gateways**, click **Create Internet Gateway**:
    - **Name**: `My-IGW`.
 2. Attach the IGW to `My-VPC`:
    - Select the IGW → **Actions** → **Attach to VPC** → Choose `My-VPC`.
-
----
 
 ### Step 4: Set Up a Virtual Private Gateway (VPG)
 
@@ -107,8 +103,6 @@ An AZ is a physical data center within an AWS Region. Using multiple AZs enhance
    - Leave the default ASN setting.
 2. Attach the VPG to `My-VPC`:
    - Select the VPG → **Actions** → **Attach to VPC** → Choose `My-VPC`.
-
----
 
 ### Step 5: Configure Route Tables
 
