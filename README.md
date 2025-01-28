@@ -2,6 +2,9 @@
 
 This guide provides step-by-step instructions to set up an AWS VPC with the following architecture:
 
+![image](https://github.com/user-attachments/assets/3069fa13-6db5-4215-9a9a-c054d42871e5)
+
+
 - A single **VPC**.
 - Two **Availability Zones (AZs)**: **Zone A** and **Zone B**.
 - Each AZ contains one **public subnet** and one **private subnet**:
@@ -63,6 +66,9 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
    - Leave other settings as default.
 4. Click **Create VPC**.
 
+![image](https://github.com/user-attachments/assets/621040e9-2bcd-4eb7-bff0-6173104e6807)
+
+
 ### Step 2: Subnet Creation
 
 #### Zone A
@@ -86,6 +92,9 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
    - **AZ**: `us-east-1b`.
    - **CIDR Block**: `10.0.0.192/26`.
 
+![image](https://github.com/user-attachments/assets/53a88960-17bd-49df-a545-3f55e263b817)
+
+
 ### Step 3: Internet Gateway (IGW)
 1. In the **VPC Dashboard**, go to **Internet Gateways** and click **Create Internet Gateway**.
 2. Configure the IGW:
@@ -93,12 +102,18 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
 3. Attach the IGW to `My-VPC`:
    - Select the IGW, then click **Actions** → **Attach to VPC** → Choose `My-VPC`.
 
+![image](https://github.com/user-attachments/assets/cb025cef-79c3-4de5-a172-39bdc11350af)
+
+
 ### Step 4: Virtual Private Gateway (VPG)
 1. Navigate to **Virtual Private Gateways** and click **Create Virtual Private Gateway**.
 2. Configure the VPG:
    - **Name**: `My-VPG`.
 3. Attach the VPG to `My-VPC`:
    - Select the VPG → **Actions** → **Attach to VPC** → Choose `My-VPC`.
+
+![image](https://github.com/user-attachments/assets/e8ee93a5-692d-4879-881c-4b0d753df22c)
+
 
 ### Step 5: Configure Route Tables
 
@@ -114,6 +129,9 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
 3. Associate public subnets:
    - In the **Subnet Associations** tab → **Edit Subnet Associations** → Select `Public-Subnet-1` and `Public-Subnet-2`.
 
+![image](https://github.com/user-attachments/assets/1f35dd61-fdf5-40af-ad60-7865d31c6b30)
+
+
 #### Private Route Table
 1. Create a private route table:
    - **Name**: `Private-Route-Table`.
@@ -123,6 +141,9 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
 3. Associate private subnets:
    - In **Subnet Associations** → **Edit Subnet Associations** → Select `Private-Subnet-1` and `Private-Subnet-2`.
 
+![image](https://github.com/user-attachments/assets/046c0896-bd3b-4fb7-a98f-ba948bf9a1cd)
+
+
 ### Step 6: Launch EC2 Instances
 
 #### Public Subnets
@@ -130,6 +151,9 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
    - Assign a **Public IP Address**.
    - Use a security group allowing SSH (port 22).
 2. Repeat for `Public-Subnet-2`.
+
+![image](https://github.com/user-attachments/assets/3654fbec-c9c2-4723-98ed-5b6bc9398e5e)
+
 
 #### Private Subnets
 1. Launch an EC2 instance in `Private-Subnet-1`:
@@ -145,12 +169,20 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
      - **Type**: `SSH`.
      - **Port**: `22`.
      - **Source**: Use your IP (`My IP`) or a specific CIDR.
+
+![image](https://github.com/user-attachments/assets/2bcc5065-e3d3-4c0a-b412-7f0ee80757e8)
+
+       
 2. Attach this security group to private instances.
 
 ---
 
 ## Validation
 - Confirm public instances can access the internet.
+
+![image](https://github.com/user-attachments/assets/58c00e82-b94d-4a5e-9709-2fb181ee8e60)
+
+  
 - Verify private instances are isolated and connected through the VPG.
 
 ---
@@ -158,3 +190,5 @@ An AZ is a distinct geographical location within an AWS Region, designed for fau
 ## References
 - [AWS VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)
 - [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/latest/userguide/)
+- [AWS Internet Gateway Documentation](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
+- [AWS Virtual Private Gateway Documentation](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)
